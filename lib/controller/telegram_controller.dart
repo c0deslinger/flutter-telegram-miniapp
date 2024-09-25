@@ -14,6 +14,15 @@ class TelegramController extends GetxController {
   }
 
   void getTelegramData() {
+    // telegramData = {
+    //   "user": {
+    //     "id": 123456789,
+    //     "first_name": "John",
+    //     "last_name": "Doe",
+    //     "username": "johndoe",
+    //     "photo_url": "https://via.placeholder.com/150",
+    //   },
+    // };
     try {
       telegramData = initTelegramWebApp();
       if (telegramData != null) {
