@@ -27,12 +27,7 @@ class GarageTab extends GetView<CoinController> {
                         Column(
                           children: <Widget>[
                             CircleAvatar(
-                              backgroundImage:
-                                  (telegramController.profilePhotoUrl != null)
-                                      ? NetworkImage(telegramController
-                                          .telegramData!['user']['photo_url'])
-                                      : AssetImage('assets/captain.jpg')
-                                          as ImageProvider<Object>,
+                              backgroundImage: AssetImage('assets/captain.jpg'),
                               radius: 30.0,
                             ),
                             SizedBox(height: 8.0),
