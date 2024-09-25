@@ -10,8 +10,21 @@ class TelegramController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    telegramData = initTelegramWebApp();
-    print('Telegram Data: $telegramData');
+    getTelegramData();
+  }
+
+  void getTelegramData() {
+    try {
+      telegramData = initTelegramWebApp();
+      if (telegramData != null) {
+        print('Telegram Data: $telegramData');
+      } else {
+        print('Telegram data is null.');
+      }
+    } catch (e) {
+      print('Error retrieving Telegram data: $e');
+    }
+    update();
   }
 
   // Function to initialize the Telegram WebApp

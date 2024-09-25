@@ -30,21 +30,23 @@ class GarageTab extends GetView<CoinController> {
                               backgroundImage:
                                   (telegramController.telegramData != null &&
                                           telegramController
-                                                  .telegramData!['photo_url'] !=
+                                                      .telegramData!['user']
+                                                  ?['photo_url'] !=
                                               null)
                                       ? NetworkImage(telegramController
-                                          .telegramData!['photo_url']!)
+                                          .telegramData!['user']['photo_url'])
                                       : AssetImage('assets/captain.jpg')
                                           as ImageProvider<Object>,
                               radius: 30.0,
                             ),
                             SizedBox(height: 8.0),
                             Text(
-                                'Capt. ' +
-                                    (telegramController
-                                            .telegramData?['username'] ??
-                                        'Unknown'),
-                                style: const TextStyle(fontSize: 16)),
+                              'Capt. ' +
+                                  (telegramController.telegramData?['user']
+                                          ?['username'] ??
+                                      'Unknown'),
+                              style: const TextStyle(fontSize: 16),
+                            ),
                           ],
                         ),
                         (telegramController.telegramData != null &&
