@@ -1,11 +1,14 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'dart:js' as js;
 
 class TelegramController extends GetxController {
+  String botToken = '7801729215:AAEsRq-0Fj0_UJrp33DwpVVxwaSiGt2J9Aw';
+
   Map<String, dynamic>? telegramData;
+  String? profilePhotoUrl;
 
   @override
   void onInit() {
@@ -14,24 +17,15 @@ class TelegramController extends GetxController {
   }
 
   void getTelegramData() {
-    // telegramData = {
-    //   "user": {
-    //     "id": 123456789,
-    //     "first_name": "John",
-    //     "last_name": "Doe",
-    //     "username": "johndoe",
-    //     "photo_url": "https://via.placeholder.com/150",
-    //   },
-    // };
-    try {
-      telegramData = initTelegramWebApp();
-      if (telegramData != null) {
-        print('Telegram Data: $telegramData');
-      } else {
-        print('Telegram data is null.');
+    telegramData = initTelegramWebApp();
+    if (telegramData != null) {
+      print('Telegram Data: $telegramData');
+      // Fetch the profile picture after receiving the Telegram data
+      if (telegramData!['user']?['id'] != null) {
+        getUserProfilePhoto(telegramData!['user']['id']);
       }
-    } catch (e) {
-      print('Error retrieving Telegram data: $e');
+    } else {
+      print('Telegram data is null.');
     }
     update();
   }
@@ -57,5 +51,69 @@ class TelegramController extends GetxController {
   // Function to control the MainButton in Telegram
   static void setMainButton(String text, bool isVisible) {
     js.context.callMethod('setMainButton', [text, isVisible]);
+  }
+
+  // Function to fetch the user's profile photo from Telegram's API
+  Future<void> getUserProfilePhoto(int userId) async {
+    try {
+      // API endpoint to get the user's profile photos
+      final String url =
+          'https://api.telegram.org/bot$botToken/getUserProfilePhotos?user_id=$userId&limit=1';
+
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        // Parse the response body
+        final data = jsonDecode(response.body);
+        if (data['ok'] == true && data['result']['photos'].isNotEmpty) {
+          // Get the photo file ID of the highest resolution picture
+          final photos = data['result']['photos'][0];
+          final photoFileId = photos.last['file_id'];
+
+          // Get the file URL
+          final photoUrl = await getFileUrl(photoFileId);
+          profilePhotoUrl = photoUrl;
+          update();
+        } else {
+          print('No profile photos found.');
+        }
+      } else {
+        print('Failed to fetch profile photos: ${response.body}');
+      }
+    } catch (e) {
+      print('Error fetching profile photo: $e');
+    }
+  }
+
+  // Function to get the file URL for a file_id from Telegram
+  Future<String?> getFileUrl(String fileId) async {
+    try {
+      // Replace 'YOUR_BOT_TOKEN' with your actual Telegram bot token
+      const String botToken = 'YOUR_BOT_TOKEN';
+
+      // API endpoint to get the file path
+      final String url =
+          'https://api.telegram.org/bot$botToken/getFile?file_id=$fileId';
+
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data['ok'] == true) {
+          final filePath = data['result']['file_path'];
+          // Construct the file URL
+          final fileUrl =
+              'https://api.telegram.org/file/bot$botToken/$filePath';
+          return fileUrl;
+        } else {
+          print('Failed to fetch file path: ${response.body}');
+        }
+      } else {
+        print('Failed to fetch file path: ${response.body}');
+      }
+    } catch (e) {
+      print('Error fetching file URL: $e');
+    }
+    return null;
   }
 }

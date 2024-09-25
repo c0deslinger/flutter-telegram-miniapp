@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
+  http: ^1.2.2
   js: ^0.7.1
   shake_detector: ^0.1.2
 
