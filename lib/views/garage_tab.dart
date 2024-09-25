@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:shake_detector/shake_detector.dart';
 
 class GarageTab extends GetView<CoinController> {
-  const GarageTab({super.key});
+  Map<String, dynamic>? telegramData;
+  GarageTab({super.key, required this.telegramData});
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +20,43 @@ class GarageTab extends GetView<CoinController> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
                           CircleAvatar(
-                            backgroundImage: AssetImage('assets/captain.jpg'),
+                            backgroundImage: (telegramData != null &&
+                                    telegramData!['photo_url'] != null)
+                                ? NetworkImage(telegramData!['photo_url']!)
+                                : AssetImage('assets/captain.jpg')
+                                    as ImageProvider<Object>,
                             radius: 30.0,
                           ),
                           SizedBox(height: 8.0),
-                          Text('Capt. Yusuf'),
+                          Text(
+                              'Capt. ' +
+                                  (telegramData?['username'] ?? 'Unknown'),
+                              style: const TextStyle(fontSize: 16)),
                         ],
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            'Sponsored by:',
-                            style: TextStyle(fontSize: 10),
-                          ),
-                          Text(
-                            'Untukmu.AI',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
+                      if (telegramData != null)
+                        Column(
+                          children: [
+                            Text(
+                              'Data',
+                              style: TextStyle(fontSize: 10),
+                            ),
+                            Text(
+                              telegramData?['first_name'] ?? 'Unknown',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            Text(
+                              telegramData?['id'] ?? 'Unknown',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
                     ],
                   ),
                   const SizedBox(height: 20),

@@ -34,6 +34,7 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   Map<String, dynamic>? telegramData;
+  late List<Widget> _widgetOptions;
 
   @override
   void initState() {
@@ -41,19 +42,18 @@ class HomeScreenState extends State<HomeScreen> {
     telegramData = TelegramWebApp.initTelegramWebApp();
     print('Telegram Data: $telegramData');
     if (telegramData != null) {
-      Future.delayed(Duration(milliseconds: 1000), () {
+      Future.delayed(const Duration(milliseconds: 1000), () {
         setState(() {});
       });
     }
+    _widgetOptions = <Widget>[
+      GarageTab(telegramData: telegramData),
+      const AdventureTab(),
+      const Text('Earn Tab - Coming Soon'),
+      const Text('Friend Tab - Coming Soon'),
+      const Text('Airdrop Tab - Coming Soon'),
+    ];
   }
-
-  static final List<Widget> _widgetOptions = <Widget>[
-    const GarageTab(),
-    const AdventureTab(),
-    const Text('Earn Tab - Coming Soon'),
-    const Text('Friend Tab - Coming Soon'),
-    const Text('Airdrop Tab - Coming Soon'),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
