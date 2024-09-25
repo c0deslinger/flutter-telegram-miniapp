@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
-import 'package:foruai_mini_app/telegram_web_app.dart';
+import 'package:foruai_mini_app/controller/telegram_controller.dart';
 import 'package:foruai_mini_app/views/adventure_tab.dart';
 import 'package:foruai_mini_app/views/garage_tab.dart';
 import 'package:get/get.dart';
@@ -33,21 +33,14 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  Map<String, dynamic>? telegramData;
   late List<Widget> _widgetOptions;
+  TelegramController telegramController = Get.put(TelegramController());
 
   @override
   void initState() {
     super.initState();
-    telegramData = TelegramWebApp.initTelegramWebApp();
-    print('Telegram Data: $telegramData');
-    if (telegramData != null) {
-      Future.delayed(const Duration(milliseconds: 1000), () {
-        setState(() {});
-      });
-    }
     _widgetOptions = <Widget>[
-      GarageTab(telegramData: telegramData),
+      GarageTab(),
       const AdventureTab(),
       const Text('Earn Tab - Coming Soon'),
       const Text('Friend Tab - Coming Soon'),

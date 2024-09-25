@@ -1,9 +1,19 @@
 import 'dart:convert';
-import 'dart:js' as js;
 
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'dart:js' as js;
 
-class TelegramWebApp {
+class TelegramController extends GetxController {
+  Map<String, dynamic>? telegramData;
+
+  @override
+  void onInit() {
+    super.onInit();
+    telegramData = initTelegramWebApp();
+    print('Telegram Data: $telegramData');
+  }
+
   // Function to initialize the Telegram WebApp
   static Map<String, dynamic>? initTelegramWebApp() {
     final result = js.context.callMethod('initTelegramWebApp');
