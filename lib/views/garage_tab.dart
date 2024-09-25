@@ -50,8 +50,8 @@ class GarageTab extends GetView<CoinController> {
                           ],
                         ),
                         (telegramController.telegramData != null &&
-                                telegramController
-                                        .telegramData!['first_name'] !=
+                                telegramController.telegramData!['user']
+                                        ?['first_name'] !=
                                     null)
                             ? Column(
                                 children: [
@@ -60,13 +60,14 @@ class GarageTab extends GetView<CoinController> {
                                     style: TextStyle(fontSize: 10),
                                   ),
                                   Text(
-                                    telegramController
-                                            .telegramData?['first_name'] ??
+                                    telegramController.telegramData?['user']
+                                            ?['first_name'] ??
                                         'Unknown',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                   Text(
-                                    telegramController.telegramData?['id'] ??
+                                    telegramController.telegramData?['user']
+                                            ?['id'] ??
                                         'Unknown',
                                     style: TextStyle(fontSize: 16),
                                   ),
