@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
 import 'package:foruai_mini_app/controller/telegram_controller.dart';
 import 'package:foruai_mini_app/views/adventure_tab.dart';
-import 'package:foruai_mini_app/views/garage_tab.dart';
+import 'package:foruai_mini_app/views/home_tab.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -40,7 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      GarageTab(),
+      HomeTab(),
       const AdventureTab(),
       const Text('Earn Tab - Coming Soon'),
       const Text('Friend Tab - Coming Soon'),

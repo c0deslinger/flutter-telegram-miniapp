@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class CoinController extends GetxController {
   var coins = 0.obs;
   var spaceshipLevel = 0.obs;
-  int upgradeCost = 150;
+  int upgradeCost = 5;
 
   void incrementCoins({int amount = 1}) {
     coins += amount;

@@ -28,12 +28,12 @@ class _AdventureTabState extends State<AdventureTab> {
               ),
               const SizedBox(height: 20),
               const Text(
-                  "Your spaceship not ready to ship!\nUpgrade the spaceship level in the garage tab.")
+                  "Your spaceship not ready to ship!\nMinimum HP is 5 to play this game.")
             ],
           ),
         );
       }
-      return GameScreen();
+      return const GameScreen();
     });
   }
 }

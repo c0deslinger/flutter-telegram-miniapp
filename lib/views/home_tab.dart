@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
 import 'package:foruai_mini_app/controller/telegram_controller.dart';
+import 'package:foruai_mini_app/widgets/hud_view.dart';
 import 'package:get/get.dart';
 import 'package:shake_detector/shake_detector.dart';
 
-class GarageTab extends GetView<CoinController> {
-  GarageTab({super.key});
+class HomeTab extends GetView<CoinController> {
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,11 @@ class GarageTab extends GetView<CoinController> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            CircleAvatar(
+                            const CircleAvatar(
                               backgroundImage: AssetImage('assets/captain.jpg'),
                               radius: 30.0,
                             ),
-                            SizedBox(height: 8.0),
+                            const SizedBox(height: 8.0),
                             Text(
                               'Capt. ' +
                                   (telegramController.telegramData?['user']
@@ -49,14 +50,14 @@ class GarageTab extends GetView<CoinController> {
                                     telegramController.telegramData?['user']
                                             ?['first_name'] ??
                                         'Unknown',
-                                    style: TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                   Text(
                                     telegramController.telegramData?['user']
                                                 ?['id']
                                             .toString() ??
                                         'Unknown',
-                                    style: TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                 ],
                               )
@@ -101,7 +102,7 @@ class GarageTab extends GetView<CoinController> {
               },
               child: AnimatedContainer(
                 duration: const Duration(seconds: 1),
-                height: 350.0,
+                height: 300.0,
                 curve: Curves.easeInOut,
                 child: Image.asset(
                   'assets/spaceship.png',
@@ -135,35 +136,6 @@ class GarageTab extends GetView<CoinController> {
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HudView extends StatelessWidget {
-  const HudView({Key? key, required this.label, required this.icon})
-      : super(key: key);
-
-  final Widget icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
-        decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(8)),
-        child: Column(
-          children: [
-            icon,
-            const SizedBox(height: 8),
-            Text(label,
-                style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
