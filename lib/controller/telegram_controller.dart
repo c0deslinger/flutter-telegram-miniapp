@@ -88,9 +88,6 @@ class TelegramController extends GetxController {
   // Function to get the file URL for a file_id from Telegram
   Future<String?> getFileUrl(String fileId) async {
     try {
-      // Replace 'YOUR_BOT_TOKEN' with your actual Telegram bot token
-      const String botToken = 'YOUR_BOT_TOKEN';
-
       // API endpoint to get the file path
       final String url =
           'https://api.telegram.org/bot$botToken/getFile?file_id=$fileId';
