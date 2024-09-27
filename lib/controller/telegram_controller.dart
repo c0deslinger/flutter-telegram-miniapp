@@ -15,9 +15,9 @@ class TelegramController extends GetxController {
   void getTelegramData() {
     telegramData = initTelegramWebApp();
     if (telegramData != null) {
-      print('Telegram Data: $telegramData');
+      debugPrint('Telegram Data: $telegramData');
     } else {
-      print('Telegram data is null.');
+      debugPrint('Telegram data is null.');
     }
     update();
   }
