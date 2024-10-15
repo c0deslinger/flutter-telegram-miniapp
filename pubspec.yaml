@@ -35,7 +35,6 @@ dependencies:
   get: ^4.6.6
   http: ^1.2.2
   js: ^0.7.1
-  pointer_interceptor: ^0.10.1+2
   shake_detector: ^0.1.2
   webview_flutter_web: ^0.2.3+2
 

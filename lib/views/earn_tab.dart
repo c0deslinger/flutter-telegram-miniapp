@@ -33,10 +33,10 @@ class EarnTab extends StatelessWidget {
             );
 
             if (createInvoiceResponse != null && createInvoiceResponse.ok!) {
-              // _showBottomSheet(context, createInvoiceResponse.result!);
+              _showBottomSheet(context, createInvoiceResponse.result!);
 
               //open url
-              js.context.callMethod('open', [createInvoiceResponse.result!]);
+              // js.context.callMethod('open', [createInvoiceResponse.result!]);
             }
           },
           child: const Text('Pay Telegram Stars'),
