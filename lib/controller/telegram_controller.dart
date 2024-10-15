@@ -44,4 +44,9 @@ class TelegramController extends GetxController {
   static void setMainButton(String text, bool isVisible) {
     js.context.callMethod('setMainButton', [text, isVisible]);
   }
+
+  // Function to open invoice
+  void openInvoice(String url) {
+    js.context.callMethod('openInvoice', [url]);
+  }
 }

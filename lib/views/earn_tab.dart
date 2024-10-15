@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foruai_mini_app/controller/telegram_controller.dart';
 import 'package:foruai_mini_app/model/create_invoice_response.dart';
 import 'package:foruai_mini_app/widgets/invoice_webview.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'dart:js' as js;
 
 class EarnTab extends StatelessWidget {
   final TelegramPaymentController telegramPaymentController = Get.find();
+  final TelegramController telegramController = Get.find();
 
   EarnTab({super.key});
 
@@ -28,15 +30,16 @@ class EarnTab extends StatelessWidget {
               payload:
                   'unique_payload_${DateTime.now().millisecondsSinceEpoch}',
               currency: 'XTR',
-              priceAmount: 1000, // Contoh: 1000 sen = $10.00
+              priceAmount: 1,
               priceLabel: 'Total',
             );
 
             if (createInvoiceResponse != null && createInvoiceResponse.ok!) {
-              _showBottomSheet(context, createInvoiceResponse.result!);
+              // _showBottomSheet(context, createInvoiceResponse.result!);
 
               //open url
               // js.context.callMethod('open', [createInvoiceResponse.result!]);
+              telegramController.openInvoice(createInvoiceResponse.result!);
             }
           },
           child: const Text('Pay Telegram Stars'),
