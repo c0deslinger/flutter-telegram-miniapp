@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
 import 'package:foruai_mini_app/controller/telegram_controller.dart';
+import 'package:foruai_mini_app/controller/telegram_payment_controller.dart';
 import 'package:foruai_mini_app/views/adventure_tab.dart';
+import 'package:foruai_mini_app/views/earn_tab.dart';
 import 'package:foruai_mini_app/views/home_tab.dart';
 import 'package:get/get.dart';
 
@@ -35,14 +37,16 @@ class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   late List<Widget> _widgetOptions;
   TelegramController telegramController = Get.put(TelegramController());
+  TelegramPaymentController telegramPaymentController =
+      Get.put(TelegramPaymentController());
 
   @override
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      HomeTab(),
+      const HomeTab(),
       const AdventureTab(),
-      const Text('Earn Tab - Coming Soon'),
+      EarnTab(),
       const Text('Friend Tab - Coming Soon'),
       const Text('Airdrop Tab - Coming Soon'),
     ];
@@ -60,10 +64,6 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 20,
-        // title: Text(
-        //   'Expedition to the Moon',
-        //   style: TextStyle(fontSize: 18),
-        // ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
