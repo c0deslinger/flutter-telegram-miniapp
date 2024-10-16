@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class TelegramPaymentController extends GetxController {
+// reference: https://core.telegram.org/bots/api
+class TelegramBotController extends GetxController {
   final String botToken = '7801729215:AAHYNaLC86VFnPLBBRAxGx3VW_nrMPPm3e4';
   final String telegramApiUrl = 'https://api.telegram.org/bot';
 

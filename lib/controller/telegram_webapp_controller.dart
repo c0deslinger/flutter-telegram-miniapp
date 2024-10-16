@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'dart:js' as js;
 
-class TelegramController extends GetxController {
+// reference: https://core.telegram.org/bots/webapps
+class TelegramWebAppController extends GetxController {
   Map<String, dynamic>? telegramData;
 
   @override

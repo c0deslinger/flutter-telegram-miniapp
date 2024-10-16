@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
-import 'package:foruai_mini_app/controller/telegram_controller.dart';
+import 'package:foruai_mini_app/controller/telegram_webapp_controller.dart';
 import 'package:foruai_mini_app/widgets/hud_view.dart';
 import 'package:get/get.dart';
 import 'package:shake_detector/shake_detector.dart';
@@ -21,7 +21,8 @@ class HomeTab extends GetView<CoinController> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  GetBuilder<TelegramController>(builder: (telegramController) {
+                  GetBuilder<TelegramWebAppController>(
+                      builder: (telegramController) {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -33,6 +34,7 @@ class HomeTab extends GetView<CoinController> {
                             ),
                             const SizedBox(height: 8.0),
                             Text(
+                              // ignore: prefer_interpolation_to_compose_strings
                               'Capt. ' +
                                   (telegramController.telegramData?['user']
                                           ?['username'] ??

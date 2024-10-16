@@ -233,13 +233,9 @@ class MyBird extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: 50,
         height: 50,
-        // decoration: BoxDecoration(
-        //   color: Colors.yellow,
-        //   shape: BoxShape.circle,
-        // ),
         child: Image.asset(
           'assets/spaceship.png',
         ));
@@ -249,7 +245,7 @@ class MyBird extends StatelessWidget {
 class MyObstacle extends StatelessWidget {
   final double size;
 
-  MyObstacle({super.key, required this.size});
+  const MyObstacle({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {

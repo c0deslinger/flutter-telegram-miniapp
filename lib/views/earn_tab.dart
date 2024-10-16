@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:foruai_mini_app/controller/telegram_controller.dart';
+import 'package:foruai_mini_app/controller/telegram_webapp_controller.dart';
 import 'package:foruai_mini_app/model/create_invoice_response.dart';
-import 'package:foruai_mini_app/widgets/invoice_webview.dart';
 import 'package:get/get.dart';
 
-import '../controller/telegram_payment_controller.dart';
-import 'dart:js' as js;
+import '../controller/telegram_bot_controller.dart';
 
 class EarnTab extends StatelessWidget {
-  final TelegramPaymentController telegramPaymentController = Get.find();
-  final TelegramController telegramController = Get.find();
+  final TelegramBotController telegramPaymentController = Get.find();
+  final TelegramWebAppController telegramController = Get.find();
 
   EarnTab({super.key});
 
@@ -35,8 +33,6 @@ class EarnTab extends StatelessWidget {
             );
 
             if (createInvoiceResponse != null && createInvoiceResponse.ok!) {
-              // _showBottomSheet(context, createInvoiceResponse.result!);
-
               //open url
               // js.context.callMethod('open', [createInvoiceResponse.result!]);
               telegramController.openInvoice(createInvoiceResponse.result!);
@@ -47,31 +43,4 @@ class EarnTab extends StatelessWidget {
       ),
     );
   }
-}
-
-void _showBottomSheet(BuildContext context, String invoiceLink) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return SizedBox(
-        height: 400,
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Bayar Produk',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Expanded(
-              child: InvoiceWebview(
-                url: invoiceLink,
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
 }

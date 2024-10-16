@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bootpay_webview_flutter_platform_interface: ^2.10.0
   cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
@@ -36,7 +35,6 @@ dependencies:
   http: ^1.2.2
   js: ^0.7.1
   shake_detector: ^0.1.2
-  webview_flutter_web: ^0.2.3+2
 
 dev_dependencies:
   flutter_lints: ^3.0.0

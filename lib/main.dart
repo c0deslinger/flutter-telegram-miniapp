@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foruai_mini_app/controller/coin_controller.dart';
-import 'package:foruai_mini_app/controller/telegram_controller.dart';
-import 'package:foruai_mini_app/controller/telegram_payment_controller.dart';
+import 'package:foruai_mini_app/controller/telegram_webapp_controller.dart';
+import 'package:foruai_mini_app/controller/telegram_bot_controller.dart';
 import 'package:foruai_mini_app/views/adventure_tab.dart';
 import 'package:foruai_mini_app/views/earn_tab.dart';
 import 'package:foruai_mini_app/views/home_tab.dart';
@@ -36,9 +36,10 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   late List<Widget> _widgetOptions;
-  TelegramController telegramController = Get.put(TelegramController());
-  TelegramPaymentController telegramPaymentController =
-      Get.put(TelegramPaymentController());
+  TelegramWebAppController telegramController =
+      Get.put(TelegramWebAppController());
+  TelegramBotController telegramPaymentController =
+      Get.put(TelegramBotController());
 
   @override
   void initState() {
