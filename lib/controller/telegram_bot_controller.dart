@@ -7,7 +7,7 @@ import 'dart:convert';
 
 // reference: https://core.telegram.org/bots/api
 class TelegramBotController extends GetxController {
-  final String botToken = '7801729215:AAHYNaLC86VFnPLBBRAxGx3VW_nrMPPm3e4';
+  final String botToken = '7801729215:AAGeIL7Rn6wng0odM_5-C5LGgtQ13URv5Yk';
   final String telegramApiUrl = 'https://api.telegram.org/bot';
 
   // Mengirim Invoice ke pengguna
